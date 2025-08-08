@@ -1,0 +1,798 @@
+{
+  "active": true,
+  "connections": {
+    "Daily 06:00 Cron": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Flux-Kontext-Max": {
+      "main": [
+        [
+          {
+            "node": "Download Max Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Flux-Kontext-Pro": {
+      "main": [
+        [
+          {
+            "node": "Download Pro Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Image from notion": {
+      "main": [
+        [
+          {
+            "node": "描寫原圖片女性",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Max Image": {
+      "main": [
+        [
+          {
+            "node": "合併兩個圖片",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Pro Image": {
+      "main": [
+        [
+          {
+            "node": "合併兩個圖片",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "生成圖片寫成文案",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "拿取notion所有資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "合併圖片檔案": {
+      "main": [
+        [
+          {
+            "node": "發送文案和圖片",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "拿取notion資料": {
+      "main": [
+        [
+          {
+            "node": "Download Image from notion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "描寫原圖片女性": {
+      "main": [
+        [
+          {
+            "node": "生成圖片prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "合併兩個圖片": {
+      "main": [
+        [
+          {
+            "node": "合併圖片檔案",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "生成圖片寫成文案": {
+      "main": [
+        [
+          {
+            "node": "合併兩個圖片",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "拿取原圖片": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "通知補貨",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "拿取原圖片",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "發送文案和圖片": {
+      "main": [
+        [
+          {
+            "node": "Update a database page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "生成圖片prompt": {
+      "main": [
+        [
+          {
+            "node": "Flux-Kontext-Max",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Flux-Kontext-Pro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "拿取notion所有資料": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "拿取notion資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-30T23:46:02.350Z",
+  "id": "ogKQUE1wwqRjkTfy",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "flux for rednote",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 6
+            }
+          ]
+        }
+      },
+      "name": "Daily 06:00 Cron",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        -2912,
+        -384
+      ],
+      "id": "d834e227-7f1f-41bb-a2fc-10e155a73774"
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "requestMethod": "POST",
+        "url": " https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-max/predictions",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={{\n  {\n    \"input\": {\n      \"prompt\": $json.message.content,\n      \"input_image\": \"https://alanmaytax.netlify.app/modelpic.jpg\",\n      \"aspect_ratio\": \"4:5\",\n      \"output_format\": \"jpg\",\n      \"safety_tolerance\": 2,\n      \"prompt_upsampling\": false\n    }\n  }\n}}"
+      },
+      "name": "Flux-Kontext-Max",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        -432
+      ],
+      "id": "15a35106-22b7-4deb-ac89-69615a1e7215",
+      "credentials": {
+        "fluxApi": {
+          "id": null,
+          "name": "Flux-Pro API"
+        },
+        "httpBearerAuth": {
+          "id": "NGJ6hTyVzDAD5T8s",
+          "name": "replicate.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "requestMethod": "POST",
+        "url": "https://api.replicate.com/v1/models/black-forest-labs/flux-kontext-pro/predictions",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "={{\n  {\n    \"input\": {\n      \"prompt\": $json.message.content,\n      \"input_image\": \"https://alanmaytax.netlify.app/modelpic.jpg\",\n      \"aspect_ratio\": \"4:5\",\n      \"output_format\": \"jpg\",\n      \"safety_tolerance\": 2,\n      \"prompt_upsampling\": false\n    }\n  }\n}}"
+      },
+      "name": "Flux-Kontext-Pro",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        -192
+      ],
+      "id": "4b1a5756-cefa-4034-a6b6-e1f6c707d12c",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "NGJ6hTyVzDAD5T8s",
+          "name": "replicate.com"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.imageUrl }}",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "name": "Download Image from notion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        -288
+      ],
+      "id": "71e74a42-1b82-490e-b7f1-9fbf8f8440cc"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.urls.stream }}",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "name": "Download Max Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        128,
+        -432
+      ],
+      "id": "1337d89f-fc13-4bd1-b61f-ff7f72d3c49d"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.urls.stream }}",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "name": "Download Pro Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        -192
+      ],
+      "id": "6f4deec0-cd18-4b08-ae2e-fc31b9119780"
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $today }}",
+        "format": "custom",
+        "customFormat": "yyyy-MMM-dd",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -2688,
+        -384
+      ],
+      "id": "3bcd86fc-f304-48f0-979b-27dfd7aeefae",
+      "name": "Date & Time"
+    },
+    {
+      "parameters": {
+        "jsCode": "// items[0] 和 items[1] 各自有 .binary.data\nconst first = items[0].binary.data;\nconst second = items[1].binary.data;\n\nreturn [\n  {\n    json: {\n      // 這邊可以放文字內容，例如：\n      // subject: \"今日圖片\"\n    },\n    binary: {\n      // 定義兩個新的 binary 欄位名稱，後續 Gmail 節點會用到\n      maxImage: first,\n      proImage: second,\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        576,
+        -288
+      ],
+      "id": "5e8805d0-5397-4fa2-b480-2a5cb38865c8",
+      "name": "合併圖片檔案"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 選擇「Run Once for All Items」\nreturn items.map(item => {\n  const props = item.json.properties;\n\n  // 2. 抓 Files & media 的第一張圖 URL\n  const files = props['Files & media']?.files || [];\n  const imageUrl = files[0]?.file?.url || null;\n\n  // 4. 正確取出 Title（rich_text）\n  const richTextArr = props['Title']?.rich_text || [];\n  const title = richTextArr\n    .map(rt => rt.text?.content || '')\n    .join('')\n    .trim() || null;\n\n  return {\n    json: {\n      notionRowId: item.json.id,\n      imageUrl,\n      title,\n    },\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1344,
+        -288
+      ],
+      "id": "bcb1a0ac-b0fb-4b44-9954-94f1769a1f32",
+      "name": "拿取notion資料"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "text": "First, analyze the woman in the image. Then write a descriptive passage in the style of British literature, focusing on:  \n1. **Facial features** – eyes, brows, nose, lips, cheekbones, complexion, expression.  \n2. **Clothing** – cut, fabric, color, how it drapes or frames her form.  \n3. **Overall appearance and figure** – posture, silhouette, proportions, and the way light and shadow play across her physique.  \n\nUse elegant, evocative prose with subtle metaphors and a refined, atmospheric tone reminiscent of classic British writers.",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -896,
+        -288
+      ],
+      "id": "b8d6df51-bfab-4085-9493-9bedb66a06e4",
+      "name": "描寫原圖片女性",
+      "credentials": {
+        "openAiApi": {
+          "id": "lpZtEwM8LrAmMiBX",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        352,
+        -304
+      ],
+      "id": "c0742fad-2e0e-42e1-8d1d-5668e95a856b",
+      "name": "合併兩個圖片"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "CHATGPT-4O-LATEST"
+        },
+        "text": "=请扮演一位图像分析与故事创作专家，并严格遵守小红书社区规范。透过我上传的一张合照，图中男性是我——一名香港保险代理人，女性是我的客户。请先仔细分析图片中女性的外貌、神情、姿态及环境细节，然后以简体中文，符合小红书发布风格，按照以下结构输出：\n\n1. 【标题】  \n   - 必須吸睛，要有吸睛標題，勾起读者好奇心，可以用一些破格的文字或者问题，標題規定在20字內，可以吸引小紅書的讀者點進去閱讀，標題是最重要的環節，具有吸引力并激发好奇心。\n\n2. 【正文】  \n   - 300-500字，用中文简体字，每段文字要隔行\n   - 故事要卖关子，可以吸引读者，引起读者共鸣，有文学味道\n   - 分段描述，每一段之间可以隔一行，每段开头使用 emoji（如✨、💼、📝、🔍等）。  \n   - 内容聚焦这位女性如何通过香港保险产品进行财富配置与财富管理，以及她背后的动机与原因\n   - 每段之间要隔一行\n   - 香港保险的特性也可以简易描述\n   - 用简体中文，用一些内地潮语，套用一些作家的写作手法\n   - 语言生动，引发读者共鸣与好奇。\n\n3. 【图片说明】  \n   - 先隔一行，然后在标签之前写：  \n     📷 图片及内容经客户本人同意后分享\n\n4. 【话题标签】  \n   - 在文章隔一行，然后末尾添加5-8个小红书流行标签，例如：  \n     #香港保险 #财富管理 #理财心得 #客户故事 #风险规划\n\n\n這位女性客戶是{{ $('拿取notion資料').item.json.title }}",
+        "inputType": "base64",
+        "options": {
+          "maxTokens": 1000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        128,
+        -128
+      ],
+      "id": "c6ec5fcc-09aa-4c77-88dc-c7943a09a1bd",
+      "name": "生成圖片寫成文案",
+      "credentials": {
+        "openAiApi": {
+          "id": "lpZtEwM8LrAmMiBX",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $items(\"拿取notion資料\")[0].json.notionRowId }}\n",
+          "mode": "id"
+        },
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "date|title",
+              "title": "={{ $now.format('yyyy-LLL-dd hh:mm a') }}"
+            },
+            {
+              "key": "status|status",
+              "statusValue": "Done"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        1024,
+        -288
+      ],
+      "id": "582b0156-d46a-4a37-9223-77d18f5642d1",
+      "name": "Update a database page",
+      "credentials": {
+        "notionApi": {
+          "id": "Aa0gVpoC9SkGa2QY",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "23ffc631-b837-8047-ae9d-e9aa38927aa3",
+          "mode": "list",
+          "cachedResultName": "raw pictures for generate",
+          "cachedResultUrl": "https://www.notion.so/23ffc631b8378047ae9de9aa38927aa3"
+        },
+        "limit": 1,
+        "simple": false,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "key": "status|status",
+              "condition": "equals",
+              "statusValue": "Not started"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "拿取原圖片",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [
+        -1792,
+        -288
+      ],
+      "id": "395c2436-a88f-4dbb-aa58-00c86e696702",
+      "credentials": {
+        "notionApi": {
+          "id": "Aa0gVpoC9SkGa2QY",
+          "name": "Notion account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c25838a6-8cbc-4bfd-8ecc-94d1d93886b7",
+              "leftValue": "={{ $items('Filter').length }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -2016,
+        -384
+      ],
+      "id": "ddb870e8-46d9-436b-8fe3-7353cf945a7c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "alan.nhk@gmail.com",
+        "subject": "=Notion 圖片只有{{ $items('拿取notion所有資料').length }}個剩餘",
+        "message": "=<p>點解連結</p>\n\n<p>https://www.notion.so/23ffc631b8378047ae9de9aa38927aa3?v=23ffc631b837802e9ffc000c94087536</p>\n\n<p>目前只剩下{{ $items('拿取notion所有資料').length }}個項目</p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1792,
+        -480
+      ],
+      "id": "b04b913b-0e07-49e8-9d54-45b3f8e3840f",
+      "name": "通知補貨",
+      "webhookId": "009a43f2-01d9-4c4d-81c7-fd17cbea8967",
+      "executeOnce": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gOIpIuvnrFdfA6lg",
+          "name": "draccident gmail"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "alan.nhk@gmail.com",
+        "subject": "={{ $now.format('yyyy-LLL-dd hh:mm a') }}\n\n{{ $('拿取notion資料').first().json.title }}",
+        "message": "={{\n  $items(\"生成圖片寫成文案\")[0]\n    .json.content\n    .replace(/\\n/g, '<br>')\n}}\n",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "maxImage"
+              },
+              {
+                "property": "proImage"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        -288
+      ],
+      "id": "aa6703ab-3e31-4d7a-9be4-dfb0ffbcd6e2",
+      "name": "發送文案和圖片",
+      "webhookId": "186e3618-5c1d-4be1-af51-03a3c1ab5e24",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gOIpIuvnrFdfA6lg",
+          "name": "draccident gmail"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are a professional image-prompt generator. Based on the following “Female Description,” produce a complete prompt for a high-end rendering model (e.g. Flux-Pro, Stable Diffusion, Midjourney) that MUST include all of these elements:\n\n1. Scene: Inside a top-tier Hong Kong office tower—spacious, lavishly decorated, exuding prestige and elegance.  \n2. Props: A premium executive desk, on which sits:\n   - A 14-inch tablet computer  \n   - A neat stack of documents  \n   - A sleek digital stylus  \n3. Characters:\n   - A gentleman (must exactly match the provided reference image)  \n   - A lady (appearance varies per the **Female Description** below)  \n   - Both seated together behind the desk, in natural poses, either smiling or serious toward the camera.  \n4. Background: Floor-to-ceiling glass windows revealing a panoramic view of Victoria Harbour, with plenty of natural light.  \n5. Rendering Style: Hyper-realistic, ultra-detailed, soft cinematic lighting, with a touch of film grain.\n\n**Female Description**:{{ $json.content }}\n\n\n**Example Output**:  \nGenerate a photorealistic portrait of two people seated side-by-side at a sleek marble conference table in an ultra-luxury, airy office. Floor-to-ceiling windows reveal Victoria Harbour or the Hong Kong skyline.\nInvariants\n1. Male subject: exactly matches the reference image in expression, posture, and appearance.\n2. Tabletop: a 13-inch tablet (iPad-style) prominently displayed—screen on, angled toward the camera—with neatly arranged business documents (printed reports, charts, notepad, pen).\n3. Environment: spacious, premium office with refined furnishings, abundant natural light, and strong depth.\nFemale subject (Edwardian-inspired elegance) – Early-30s; slim, dignified poise. – Long, straight chestnut hair gathered into a low ponytail at the nape, with delicate wisps curling to frame an oval face. – Thin hairband adorned with small blossoms circling her crown. – Almond-shaped eyes with subtle double eyelids and gently arched brows conveying quiet intelligence. – Straight, well-proportioned nose; lips like a small cherry—curved into a warm, measured smile or held in thoughtful repose. – Posture upright yet relaxed: shoulders straight but never stiff, sometimes leaning lightly against a railing or resting chin on hand. – Dress in a subtle floral-patterned fabric echoing the hairband motif—soft tones, modest cut. – Minimal accessories beyond the blossom hairband—no modern jewelry.\nMood & lighting Soft, diffuse daylight floods the room, highlighting her porcelain complexion, floral accents, and the tablet and documents, while casting gentle shadows for depth. The scene conveys calm composure, reflective grace, and a timeless balance of tradition and modernity.\n\n**Negative Prompts** (to avoid hand/finger errors and other artifacts)",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -672,
+        -288
+      ],
+      "id": "bbaafd17-e41d-4adc-bab8-197c13835a68",
+      "name": "生成圖片prompt",
+      "credentials": {
+        "openAiApi": {
+          "id": "lpZtEwM8LrAmMiBX",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": {
+          "__rl": true,
+          "value": "23ffc631-b837-8047-ae9d-e9aa38927aa3",
+          "mode": "list",
+          "cachedResultName": "raw pictures for generate",
+          "cachedResultUrl": "https://www.notion.so/23ffc631b8378047ae9de9aa38927aa3"
+        },
+        "limit": 100,
+        "filterType": "manual",
+        "filters": {
+          "conditions": [
+            {
+              "key": "status|status",
+              "condition": "equals",
+              "statusValue": "Not started"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        -2464,
+        -384
+      ],
+      "id": "f9d5b983-b675-410e-9d03-447c43679a4b",
+      "name": "拿取notion所有資料",
+      "alwaysOutputData": false,
+      "credentials": {
+        "notionApi": {
+          "id": "Aa0gVpoC9SkGa2QY",
+          "name": "Notion account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b48c218a-2d50-4fee-aad9-ffa0c5fc03cb",
+              "leftValue": "={{ $json.property_title }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "c095916f-6fca-4b8f-a481-d629e57bddb4",
+              "leftValue": "={{ $json.property_files_media[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -2240,
+        -384
+      ],
+      "id": "0374e6fc-cbba-4c74-9391-55d25df19ac7",
+      "name": "Filter"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -1568,
+        -288
+      ],
+      "id": "310aff3e-2aeb-4217-9f55-50dd5cd59513",
+      "name": "Limit"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Hong_Kong",
+    "callerPolicy": "workflowsFromSameOwner",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "timeSavedPerExecution": 5,
+    "errorWorkflow": "YbLJwEnBwTBfhDAw"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-07T10:39:41.587Z",
+      "updatedAt": "2025-08-07T10:39:41.587Z",
+      "id": "9xDOAby2UTJzZ8AH",
+      "name": "backup"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-08T00:00:54.584Z",
+  "versionId": "df0565bc-9e27-4868-aac4-81781241610a"
+}

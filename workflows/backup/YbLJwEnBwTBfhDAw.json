@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Error Trigger": {
       "main": [
@@ -72,6 +72,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-07T10:39:50.726Z",
+  "updatedAt": "2025-08-08T00:15:51.693Z",
   "versionId": "6c01a534-fd21-4f6c-9ea3-66c03204cd89"
 }

@@ -1,0 +1,253 @@
+{
+  "active": false,
+  "connections": {
+    "Parse OCR JSON": {
+      "main": [
+        [
+          {
+            "node": "Add Metadata",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Metadata": {
+      "main": [
+        [
+          {
+            "node": "Append to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "用gemini分析收據",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "用gemini分析收據": {
+      "main": [
+        [
+          {
+            "node": "Parse OCR JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-06T14:44:58.929Z",
+  "id": "g8j8yzZjtZkNlm64",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "收集收據",
+  "nodes": [
+    {
+      "parameters": {
+        "functionCode": "const raw = items[0].json.choices[0].message.content;\nconst d = JSON.parse(raw);\nreturn [{ json: {\n  receiptDate: d.receiptDate,\n  receiptAmount: d.receiptAmount,\n  receiptNumber: d.receiptNumber,\n  items: Array.isArray(d.items) ? d.items.join('; ') : d.items\n}}];"
+      },
+      "name": "Parse OCR JSON",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -112
+      ],
+      "id": "1dc13bf8-1b63-4e1f-93f7-6c8d8c314ef4"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "uploadDate",
+              "value": "={{ new Date().toISOString() }}"
+            },
+            {
+              "name": "fileUrl",
+              "value": "={{ $json.webViewLink }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Add Metadata",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        864,
+        -112
+      ],
+      "id": "d30b5d4f-cd9e-49a9-baec-9770a1d2a799"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "YOUR_GOOGLE_SHEET_ID",
+        "range": "Sheet1!A:F",
+        "options": {}
+      },
+      "name": "Append to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 2,
+      "position": [
+        1072,
+        -112
+      ],
+      "id": "1380d566-44f1-44c2-981b-9cb51fd02e8b",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": null,
+          "name": "Google Sheets Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1CFfglSq5QOwmhpz1dx63olZL2ZorKcAG",
+          "mode": "list",
+          "cachedResultName": "收據",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1CFfglSq5QOwmhpz1dx63olZL2ZorKcAG"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        240,
+        -112
+      ],
+      "id": "860cccea-edad-444b-ba57-212e7ec2bf3e",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "uX99TXZvFOqdHu9o",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        32,
+        -112
+      ],
+      "id": "39213020-a6d0-4662-9c75-681ef4dd982f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "requestMethod": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "options": {},
+        "bodyParametersUi": {
+          "parameter": [
+            {
+              "name": "model",
+              "value": "google/gemini-2.5-pro"
+            },
+            {
+              "name": "messages",
+              "value": "=[\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"What is in this image?\"\n        },\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\n            \"url\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg\"\n          }\n        }\n      ]\n    }\n  ]"
+            }
+          ]
+        },
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            }
+          ]
+        }
+      },
+      "name": "用gemini分析收據",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        448,
+        -112
+      ],
+      "id": "07f5db7a-bd30-4680-875b-a1f7f511157a",
+      "credentials": {
+        "genericCredentialType": {
+          "id": null,
+          "name": "OpenRouter API"
+        },
+        "httpBearerAuth": {
+          "id": "Rov2hAxgSjfQGdFT",
+          "name": "openrouter"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Upload file": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-07T10:39:41.587Z",
+      "updatedAt": "2025-08-07T10:39:41.587Z",
+      "id": "9xDOAby2UTJzZ8AH",
+      "name": "backup"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-08T10:24:34.656Z",
+  "versionId": "0e54bac4-150e-4162-be0d-e1a327e09b38"
+}

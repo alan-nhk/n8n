@@ -147,7 +147,7 @@
       "main": [
         [
           {
-            "node": "Send a message",
+            "node": "Limit",
             "type": "main",
             "index": 0
           }
@@ -255,6 +255,17 @@
         [
           {
             "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
             "type": "main",
             "index": 0
           }
@@ -582,8 +593,8 @@
     {
       "parameters": {
         "content": "## Main workflow loop",
-        "height": 434.88564057365943,
-        "width": 886.4410237965205,
+        "height": 435,
+        "width": 1062,
         "color": 7
       },
       "id": "b15acb5d-7686-4705-a27b-0b646fe65740",
@@ -717,7 +728,7 @@
       "name": "Execute Workflow",
       "type": "n8n-nodes-base.executeWorkflow",
       "position": [
-        -720,
+        -512,
         144
       ],
       "typeVersion": 1.2
@@ -843,8 +854,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -768,
-        0
+        -512,
+        16
       ],
       "id": "3b1cf072-a1b7-4e58-b90b-4c4c51e7b0a8",
       "name": "Send a message",
@@ -855,6 +866,17 @@
           "name": "draccident gmail"
         }
       }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        16
+      ],
+      "id": "ae5c458d-c3cc-45b4-93e6-44fea3601b5e",
+      "name": "Limit"
     }
   ],
   "pinData": {},
@@ -871,6 +893,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-08T00:11:49.322Z",
-  "versionId": "b3c244d3-4102-4830-bb10-10aeb6032ac9"
+  "updatedAt": "2025-08-08T00:13:13.555Z",
+  "versionId": "e755e087-00ee-4888-abc2-cdcf1021c927"
 }

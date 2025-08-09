@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Error Trigger": {
       "main": [
@@ -36,7 +36,7 @@
       "parameters": {
         "sendTo": "alan.nhk@gmail.com",
         "subject": "=工作流 {{ $json.workflow.name }} 出錯誤",
-        "message": "={{ $json.execution.error.message }}",
+        "message": "=<h3>n8n 工作流錯誤通知</h3>\n<p><b>工作流：</b> {{ $json.workflow.name }}（ID: {{ $json.workflow.id }}）</p>\n<p><b>節點：</b> {{ $json.execution?.lastNodeExecuted || $json.execution?.error?.node?.name || $json.trigger?.error?.node?.name || '未知節點' }}</p>\n<p><b>錯誤訊息：</b> {{ $json.execution?.error?.message || $json.trigger?.error?.message || '（無訊息）' }}</p>\n<p><b>執行 ID：</b> {{ $json.execution?.id || '—' }}</p>\n<p><b>執行連結：</b> <a href=\"{{ $json.execution?.url }}\">開啟 Execution</a></p>\n<p><b>模式：</b> {{ $json.execution?.mode || $json.trigger?.mode }}</p>\n",
         "options": {
           "appendAttribution": false
         }
@@ -60,7 +60,11 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Asia/Hong_Kong",
+    "saveExecutionProgress": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "YbLJwEnBwTBfhDAw"
   },
   "staticData": null,
   "tags": [
@@ -72,6 +76,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-08T00:15:51.693Z",
-  "versionId": "6c01a534-fd21-4f6c-9ea3-66c03204cd89"
+  "updatedAt": "2025-08-09T03:29:24.219Z",
+  "versionId": "1ff9f12c-db8a-46e8-b61c-b88a24a5085b"
 }

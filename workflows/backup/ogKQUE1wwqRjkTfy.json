@@ -138,17 +138,6 @@
         ]
       ]
     },
-    "拿取原圖片": {
-      "main": [
-        [
-          {
-            "node": "Limit",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "If": {
       "main": [
         [
@@ -160,7 +149,7 @@
         ],
         [
           {
-            "node": "拿取原圖片",
+            "node": "Limit",
             "type": "main",
             "index": 0
           }
@@ -386,7 +375,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// 選擇「Run Once for All Items」\nreturn items.map(item => {\n  const props = item.json.properties;\n\n  // 2. 抓 Files & media 的第一張圖 URL\n  const files = props['Files & media']?.files || [];\n  const imageUrl = files[0]?.file?.url || null;\n\n  // 4. 正確取出 Title（rich_text）\n  const richTextArr = props['Title']?.rich_text || [];\n  const title = richTextArr\n    .map(rt => rt.text?.content || '')\n    .join('')\n    .trim() || null;\n\n  return {\n    json: {\n      notionRowId: item.json.id,\n      imageUrl,\n      title,\n    },\n  };\n});\n"
+        "jsCode": "// Mode: Run Once for All Items\nreturn items.map(item => {\n  const data = item.json;\n\n  // --- 情況 A：原始 Notion 結構（含 properties）---\n  if (data.properties) {\n    const props = data.properties;\n\n    // 抓第一張圖（files 或 external）\n    const files = props['Files & media']?.files ?? [];\n    let imageUrl = null;\n    if (files.length) {\n      const f0 = files[0];\n      imageUrl = f0?.file?.url ?? f0?.external?.url ?? null;\n    }\n\n    // 取標題（Title 或 rich_text）\n    const titlePieces = props['Title']?.title ?? props['Title']?.rich_text ?? [];\n    const title =\n      titlePieces\n        .map(t => t.plain_text ?? t.text?.content ?? '')\n        .join('')\n        .trim() || null;\n\n    return {\n      json: {\n        notionRowId: data.id,\n        imageUrl,\n        title,\n        date: props['date']?.date?.start ?? null,\n      },\n    };\n  }\n\n  // --- 情況 B：簡化輸出（property_* 欄位）---\n  const imageUrl = Array.isArray(data.property_files_media) && data.property_files_media.length\n    ? data.property_files_media[0]\n    : null;\n\n  return {\n    json: {\n      notionRowId: data.id,\n      imageUrl,\n      title: data.property_title ?? null,\n      date: data.property_date || null,\n    },\n  };\n});\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -501,47 +490,6 @@
       ],
       "id": "582b0156-d46a-4a37-9223-77d18f5642d1",
       "name": "Update a database page",
-      "credentials": {
-        "notionApi": {
-          "id": "Aa0gVpoC9SkGa2QY",
-          "name": "Notion account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "databasePage",
-        "operation": "getAll",
-        "databaseId": {
-          "__rl": true,
-          "value": "23ffc631-b837-8047-ae9d-e9aa38927aa3",
-          "mode": "list",
-          "cachedResultName": "raw pictures for generate",
-          "cachedResultUrl": "https://www.notion.so/23ffc631b8378047ae9de9aa38927aa3"
-        },
-        "limit": 1,
-        "simple": false,
-        "filterType": "manual",
-        "matchType": "allFilters",
-        "filters": {
-          "conditions": [
-            {
-              "key": "status|status",
-              "condition": "equals",
-              "statusValue": "Not started"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "name": "拿取原圖片",
-      "type": "n8n-nodes-base.notion",
-      "typeVersion": 2,
-      "position": [
-        -1792,
-        -288
-      ],
-      "id": "395c2436-a88f-4dbb-aa58-00c86e696702",
       "credentials": {
         "notionApi": {
           "id": "Aa0gVpoC9SkGa2QY",
@@ -719,9 +667,9 @@
       "parameters": {
         "conditions": {
           "options": {
-            "caseSensitive": true,
+            "caseSensitive": false,
             "leftValue": "",
-            "typeValidation": "strict",
+            "typeValidation": "loose",
             "version": 2
           },
           "conditions": [
@@ -731,24 +679,36 @@
               "rightValue": "",
               "operator": {
                 "type": "string",
-                "operation": "exists",
+                "operation": "notEmpty",
                 "singleValue": true
               }
             },
             {
               "id": "c095916f-6fca-4b8f-a481-d629e57bddb4",
-              "leftValue": "={{ $json.property_files_media[0] }}",
-              "rightValue": "",
+              "leftValue": "={{ $json.property_files_media }}",
+              "rightValue": "[]",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "e39fe84e-dbb1-4cc9-8530-8876b49aa2ab",
+              "leftValue": "={{ $json.property_status }}",
+              "rightValue": "Not started",
               "operator": {
                 "type": "string",
-                "operation": "exists",
-                "singleValue": true
+                "operation": "equals"
               }
             }
           ],
           "combinator": "and"
         },
-        "options": {}
+        "looseTypeValidation": true,
+        "options": {
+          "ignoreCase": true
+        }
       },
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
@@ -764,8 +724,8 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        -1568,
-        -288
+        -1664,
+        -272
       ],
       "id": "310aff3e-2aeb-4217-9f55-50dd5cd59513",
       "name": "Limit"
@@ -793,6 +753,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-08T00:00:54.584Z",
-  "versionId": "df0565bc-9e27-4868-aac4-81781241610a"
+  "updatedAt": "2025-08-09T03:02:32.140Z",
+  "versionId": "0b680260-91a4-44c5-bf73-09cc22fd26ee"
 }

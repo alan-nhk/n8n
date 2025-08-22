@@ -743,6 +743,15 @@
     "timeSavedPerExecution": 5,
     "errorWorkflow": "YbLJwEnBwTBfhDAw"
   },
+  "shared": [
+    {
+      "createdAt": "2025-07-30T23:46:02.350Z",
+      "updatedAt": "2025-07-30T23:46:02.350Z",
+      "role": "workflow:owner",
+      "workflowId": "ogKQUE1wwqRjkTfy",
+      "projectId": "tAWfXc2Z8IFyOLzP"
+    }
+  ],
   "staticData": null,
   "tags": [
     {
@@ -753,6 +762,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-09T03:02:32.140Z",
-  "versionId": "0b680260-91a4-44c5-bf73-09cc22fd26ee"
+  "updatedAt": "2025-08-22T10:44:51.447Z",
+  "versionId": "e4f0d6d6-bb53-4693-a8cd-54887f5fc328"
 }

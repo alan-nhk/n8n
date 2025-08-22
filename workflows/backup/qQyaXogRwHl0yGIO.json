@@ -885,8 +885,18 @@
     "timezone": "Asia/Hong_Kong",
     "saveExecutionProgress": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "YbLJwEnBwTBfhDAw"
+    "errorWorkflow": "YbLJwEnBwTBfhDAw",
+    "timeSavedPerExecution": 5
   },
+  "shared": [
+    {
+      "createdAt": "2025-08-07T10:33:52.358Z",
+      "updatedAt": "2025-08-07T10:33:52.358Z",
+      "role": "workflow:owner",
+      "workflowId": "qQyaXogRwHl0yGIO",
+      "projectId": "tAWfXc2Z8IFyOLzP"
+    }
+  ],
   "staticData": {
     "node:Schedule Trigger": {
       "recurrenceRules": []
@@ -901,6 +911,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-08T00:44:15.085Z",
-  "versionId": "d17e086c-0797-407a-925f-cabd0fa99390"
+  "updatedAt": "2025-08-22T10:44:22.384Z",
+  "versionId": "13218503-0393-432b-89df-cdcc7fd89975"
 }

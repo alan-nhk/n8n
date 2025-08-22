@@ -8,8 +8,18 @@
             "node": "Send a message",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
           }
         ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
       ]
     }
   },
@@ -44,8 +54,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        720,
-        112
+        704,
+        0
       ],
       "id": "65f86eb2-ff72-488c-be1a-7308f5ef2129",
       "name": "Send a message",
@@ -56,6 +66,30 @@
           "name": "draccident gmail"
         }
       }
+    },
+    {
+      "parameters": {
+        "chatId": "8087733265",
+        "text": "=<h3>n8n 工作流錯誤通知</h3>\n<p><b>工作流：</b> {{ $json.workflow.name }}（ID: {{ $json.workflow.id }}）</p>\n<p><b>節點：</b> {{ $json.execution?.lastNodeExecuted || $json.execution?.error?.node?.name || $json.trigger?.error?.node?.name || '未知節點' }}</p>\n<p><b>錯誤訊息：</b> {{ $json.execution?.error?.message || $json.trigger?.error?.message || '（無訊息）' }}</p>\n<p><b>執行 ID：</b> {{ $json.execution?.id || '—' }}</p>\n<p><b>執行連結：</b> <a href=\"{{ $json.execution?.url }}\">開啟 Execution</a></p>\n<p><b>模式：</b> {{ $json.execution?.mode || $json.trigger?.mode }}</p>\n",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        704,
+        192
+      ],
+      "id": "56a5cb3c-ab39-43b2-8682-d36eaec40ce0",
+      "name": "Send a text message",
+      "webhookId": "640ca9fe-99d6-47ad-922e-72d5fae3148a",
+      "credentials": {
+        "telegramApi": {
+          "id": "AiPMyofLgd4AM3S0",
+          "name": "Telegram account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -64,8 +98,18 @@
     "timezone": "Asia/Hong_Kong",
     "saveExecutionProgress": true,
     "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "YbLJwEnBwTBfhDAw"
+    "errorWorkflow": "YbLJwEnBwTBfhDAw",
+    "timeSavedPerExecution": 5
   },
+  "shared": [
+    {
+      "createdAt": "2025-08-06T09:14:03.453Z",
+      "updatedAt": "2025-08-06T09:14:03.453Z",
+      "role": "workflow:owner",
+      "workflowId": "YbLJwEnBwTBfhDAw",
+      "projectId": "tAWfXc2Z8IFyOLzP"
+    }
+  ],
   "staticData": null,
   "tags": [
     {
@@ -76,6 +120,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-09T03:29:24.219Z",
-  "versionId": "1ff9f12c-db8a-46e8-b61c-b88a24a5085b"
+  "updatedAt": "2025-08-22T10:44:36.432Z",
+  "versionId": "ada0ec6d-6ddc-451d-a0f6-3b5b4696bf55"
 }

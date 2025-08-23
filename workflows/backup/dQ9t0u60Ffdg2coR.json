@@ -1,0 +1,559 @@
+{
+  "active": true,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "多檔案隔離",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "pdf image direct",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "pdf analyser direct",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pdf analyser direct": {
+      "main": [
+        [
+          {
+            "node": "pdf analyser fomattter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pdf image direct": {
+      "main": [
+        [
+          {
+            "node": "image analyser formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pdf analyser fomattter": {
+      "main": [
+        [
+          {
+            "node": "collecting data to google sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image analyser formatter": {
+      "main": [
+        [
+          {
+            "node": "collecting data to google sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "多檔案隔離": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "collecting data to google sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-12T14:43:38.410Z",
+  "id": "dQ9t0u60Ffdg2coR",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "收據整理和記錄",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "上載收據",
+        "formDescription": "把收據上載，pdf，或者圖像",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "receiptFile",
+              "fieldType": "file",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "remarks",
+              "placeholder": "客戶名稱"
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "path": "receipts",
+          "respondWithOptions": {
+            "values": {
+              "respondWith": "redirect",
+              "redirectUrl": "https://iwork.zeabur.app/form/receipts"
+            }
+          },
+          "customCss": ":root {\n  --font-family: 'Open Sans', sans-serif;\n  --font-weight-normal: 400;\n  --font-weight-bold: 600;\n\n  /* Font sizes (only把 12px -> 14px) */\n  --font-size-body: 14px;          /* was 12px */\n  --font-size-label: 14px;\n  --font-size-test-notice: 14px;   /* was 12px */\n  --font-size-input: 14px;\n  --font-size-header: 20px;\n  --font-size-paragraph: 14px;\n  --font-size-link: 14px;          /* was 12px */\n  --font-size-error: 14px;         /* was 12px */\n  --font-size-html-h1: 28px;\n  --font-size-html-h2: 20px;\n  --font-size-html-h3: 16px;\n  --font-size-html-h4: 14px;\n  --font-size-html-h5: 14px;       /* was 12px */\n  --font-size-html-h6: 10px;\n  --font-size-subheader: 14px;\n\n  /* Premium palette */\n  --color-background: #F7F7FA;\n  --color-test-notice-text: #8D6A00;   /* elegant gold */\n  --color-test-notice-bg:   #FFF7E6;\n  --color-test-notice-border:#F1D7A1;\n\n  --color-card-bg: #FFFFFF;\n  --color-card-border: #E6E8F0;\n  --color-card-shadow: rgba(17, 12, 46, 0.06);\n\n  --color-link:   #6B4EFF;  /* royal violet */\n  --color-header: #1F2330;  /* deep slate */\n  --color-label:  #374151;\n  --color-input-border: #E5E7EB;\n  --color-input-text:   #4B5563;\n  --color-focus-border: #6B4EFF;  /* 同品牌色，聚焦更清晰 */\n\n  --color-submit-btn-bg:   #6B4EFF;\n  --color-submit-btn-text: #FFFFFF;\n\n  --color-error:    #D92D20;\n  --color-required: #C08A00;  /* subtle gold for required mark */\n  --color-clear-button-bg: #6B7280;\n\n  --color-html-text: #555;\n  --color-html-link: #6B4EFF;\n  --color-header-subtext: #6B7280;\n\n  /* Radii / spacing / dimensions / others (unchanged) */\n  --border-radius-card: 8px;\n  --border-radius-input: 6px;\n  --border-radius-clear-btn: 50%;\n  --card-border-radius: 8px;\n\n  --padding-container-top: 24px;\n  --padding-card: 24px;\n  --padding-test-notice-vertical: 12px;\n  --padding-test-notice-horizontal: 24px;\n  --margin-bottom-card: 16px;\n  --padding-form-input: 12px;\n  --card-padding: 24px;\n  --card-margin-bottom: 16px;\n\n  --container-width: 448px;\n  --submit-btn-height: 48px;\n  --checkbox-size: 18px;\n\n  --box-shadow-card: 0px 4px 16px 0px var(--color-card-shadow);\n  --opacity-placeholder: 0.5;\n}"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -496,
+        -80
+      ],
+      "id": "ced52703-abad-4bbb-b485-5d6998303075",
+      "name": "On form submission",
+      "webhookId": "0ee701f6-d282-4d93-b2e0-d74dec7e038c"
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "=receiptFile",
+        "name": "={{ $now.format('yyyy-MM-dd-HHmm')}}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1J12yKSbX6-GPubLJFsNBIH95g0GgUzD1",
+          "mode": "list",
+          "cachedResultName": "收據檔案",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1J12yKSbX6-GPubLJFsNBIH95g0GgUzD1"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -48,
+        -80
+      ],
+      "id": "fc846a94-d704-487f-ba2f-c92a274ec156",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "uX99TXZvFOqdHu9o",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.mimeType }}",
+                    "rightValue": "=^image\\/",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    },
+                    "id": "7d8ffbcb-3427-4e30-b22d-9f4cbdeddb11"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3d4b10d4-9f38-47a2-b2a1-7b12bedf4cec",
+                    "leftValue": "={{ $json.mimeType }}",
+                    "rightValue": "application/pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -624,
+        288
+      ],
+      "id": "197f023b-e592-46b2-9391-578ee66bf4bf",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openRouterApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"google/gemini-2.5-pro\",\n  \"max_tokens\": 10000,\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"你是收據抽取助手。PDF 可能含多張收據，請依「收據日期+時間」分組；每張輸出：收據店舖名稱、收據日期、收據時間(可為 null)、收據號碼(可為 null)、消費詳情(僅列所有項目名稱)、消費總金額、雲端網址。\\\\n金額判定規則：\\\\n1) 優先取票面底部標示為「總計/合計/應付/應收/Total/Amount Due」的數字。\\\\n2) 不得用於總額：找零/找贖/找回/收現/現金/折扣/折讓/優惠/稅/服務費率/四捨五入/註銷/VOID/作廢/退款 等行的數字。\\\\n3) 若同時看到「合計 125.00」與「註銷 125.00」等字樣，但票面沒有明確的 VOID/作廢標記，視為正常收據，消費總金額=合計/總計的數字。\\\\n4) 若確為作廢（票面有「VOID/作廢/取消」明顯標記），才把消費總金額設為 0。\\\\n5) 若找不到總額，嘗試將各品項小計相加得到總額。\\\\n日期格式 YYYY-MM-DD；時間 HH:MM 或 HH:MM:SS；金額只要數字。\"\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"雲端網址：{{$json.webContentLink || ('https://drive.google.com/uc?export=download&id=' + $json.id)}}\"\n        },\n        {\n          \"type\": \"file\",\n          \"file\": {\n            \"filename\": \"{{$json.name || ('file-' + $json.id + '.pdf')}}\",\n            \"file_data\": \"{{$json.webContentLink || ('https://drive.google.com/uc?export=download&id=' + $json.id)}}\"\n          }\n        }\n      ]\n    }\n  ],\n  \"plugins\": [\n    { \"id\": \"file-parser\", \"pdf\": { \"engine\": \"mistral-ocr\" } }\n  ],\n  \"response_format\": {\n    \"type\": \"json_schema\",\n    \"json_schema\": {\n      \"name\": \"multi_receipt_extract_lite\",\n      \"strict\": true,\n      \"schema\": {\n        \"type\": \"object\",\n        \"additionalProperties\": false,\n        \"required\": [\"收據列表\"],\n        \"properties\": {\n          \"收據列表\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"object\",\n              \"additionalProperties\": false,\n              \"required\": [\"收據店舖名稱\", \"收據日期\", \"雲端網址\"],\n              \"properties\": {\n                \"收據店舖名稱\": { \"type\": [\"string\", \"null\"], \"maxLength\": 200 },\n                \"收據日期\":     { \"type\": [\"string\", \"null\"], \"pattern\": \"^\\\\d{4}-\\\\d{2}-\\\\d{2}$\" },\n                \"收據時間\":     { \"type\": [\"string\", \"null\"], \"pattern\": \"^(\\\\d{2}:\\\\d{2})(:\\\\d{2})?$\" },\n                \"收據號碼\":     { \"type\": [\"string\", \"null\"], \"maxLength\": 64 },\n                \"消費詳情\":     { \"type\": \"array\", \"items\": { \"type\": [\"string\", \"null\"] } },\n                \"消費總金額\":   { \"type\": [\"number\", \"null\"], \"minimum\": 0 },\n                \"實付金額\":     { \"type\": [\"number\", \"null\"], \"minimum\": 0 },\n                \"收據狀態\":     { \"type\": [\"string\", \"null\"], \"enum\": [\"正常\", \"作廢\", \"不確定\"] },\n                \"雲端網址\":     { \"type\": \"string\" }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -400,
+        384
+      ],
+      "id": "2e5afaca-c4f2-4c04-b063-b05fc97f0922",
+      "name": "pdf analyser direct",
+      "credentials": {
+        "openRouterApi": {
+          "id": "Zilsp8YupJ6k9MEi",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://openrouter.ai/api/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openRouterApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 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"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"google/gemini-2.5-pro\",\n  \"max_tokens\": 10000,\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"你是收據『圖片』抽取助手。可能有多張收據或長圖。請依「收據日期+時間」分組；每張輸出：收據店舖名稱、收據日期、收據時間(可為 null)、收據號碼(可為 null)、消費詳情（只要項目名稱，陣列）、消費總金額、雲端網址。金額只要數字；日期 YYYY-MM-DD；時間 HH:MM 或 HH:MM:SS。\"\n        }\n      ]\n    },\n    {\n      \"role\": \"user\",\n      \"content\": [\n        {\n          \"type\": \"text\",\n          \"text\": \"雲端網址：{{$json.webContentLink || ('https://drive.google.com/uc?export=download&id=' + $json.id)}}\"\n        },\n        {\n          \"type\": \"image_url\",\n          \"image_url\": {\n            \"url\": \"{{$json.webContentLink || ('https://drive.google.com/uc?export=download&id=' + $json.id)}}\"\n          }\n        }\n      ]\n    }\n  ],\n  \"response_format\": {\n    \"type\": \"json_schema\",\n    \"json_schema\": {\n      \"name\": \"multi_receipt_extract_lite\",\n      \"strict\": true,\n      \"schema\": {\n        \"type\": \"object\",\n        \"required\": [\"收據列表\"],\n        \"properties\": {\n          \"收據列表\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"object\",\n              \"additionalProperties\": false,\n              \"required\": [\"收據店舖名稱\", \"收據日期\", \"消費總金額\", \"消費詳情\", \"雲端網址\"],\n              \"properties\": {\n                \"收據店舖名稱\": { \"type\": [\"string\", \"null\"] },\n                \"收據日期\":     { \"type\": [\"string\", \"null\"], \"pattern\": \"^\\\\d{4}-\\\\d{2}-\\\\d{2}$\" },\n                \"收據時間\":     { \"type\": [\"string\", \"null\"], \"pattern\": \"^\\\\d{2}:\\\\d{2}(:\\\\d{2})?$\" },\n                \"收據號碼\":     { \"type\": [\"string\", \"null\"], \"maxLength\": 64 },\n                \"消費詳情\":     { \"type\": \"array\", \"items\": { \"type\": [\"string\", \"null\"] } },\n                \"消費總金額\":   { \"type\": [\"number\", \"null\"], \"minimum\": 0 },\n                \"雲端網址\":     { \"type\": \"string\" }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -400,
+        192
+      ],
+      "id": "b345b4bf-0f22-4c60-ae5e-a137a72494ea",
+      "name": "pdf image direct",
+      "credentials": {
+        "openRouterApi": {
+          "id": "Zilsp8YupJ6k9MEi",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 讀取 content（支援簡化回應與完整回應兩種）\nconst root = $json.body?.choices ? $json.body : $json;\nlet content = root.choices?.[0]?.message?.content || \"\";\n\n// 有些模型可能在 content 前後多描述文字；嘗試抓第一段 JSON\nconst m = content.match(/{[\\s\\S]*}/);\nconst jsonText = m ? m[0] : content;\n\n// 解析為物件\nlet data;\ntry {\n  data = JSON.parse(jsonText);\n} catch (e) {\n  throw new Error(\"解析收據 JSON 失敗：\" + e.message);\n}\n\n// 將每張收據映射為一列（欄位名稱 = 你表頭的欄位）\nconst rows = (data.收據列表 || []).map(r => ({\n  收據店舖名稱: r.收據店舖名稱 ?? null,\n  收據日期: r.收據日期 ?? null,\n  收據時間: r.收據時間 ?? null,\n  收據號碼: r.收據號碼 ?? null,\n  消費總金額: typeof r.消費總金額 === \"number\" ? r.消費總金額 : (parseFloat(r.消費總金額) || null),\n  消費詳情: Array.isArray(r.消費詳情) ? r.消費詳情.join(\"、\") : (r.消費詳情 ?? null),\n  雲端網址: r.雲端網址 ?? null\n}));\n\n// 回傳多筆 item：交給 Google Sheets 逐列 append\nreturn rows.map(j => ({ json: j }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        384
+      ],
+      "id": "460d3b2f-b34d-4f64-96f6-23befe3d405c",
+      "name": "pdf analyser fomattter"
+    },
+    {
+      "parameters": {
+        "jsCode": "// item 來自 image analyser direct（或 pdf analyser direct） → HTTP 回應\nconst content = JSON.parse($json.choices[0].message.content);\nreturn content.收據列表.map(r => ({\n  json: {\n    收據店舖名稱: r.收據店舖名稱 ?? \"\",\n    收據日期: r.收據日期 ?? \"\",\n    收據時間: r.收據時間 ?? \"\",\n    收據號碼: r.收據號碼 ?? \"\",\n    消費總金額: r.消費總金額 ?? null,\n    消費詳情: (r.消費詳情 || []).join(\"、\"),\n    雲端網址: r.雲端網址 || \"\"\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        192
+      ],
+      "id": "35760956-cc70-428e-affc-076f8c551dcf",
+      "name": "image analyser formatter"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Xd6syTScjyHPbWe95ZOTuYCVSvujnbTTnO9rboYc_LI",
+          "mode": "list",
+          "cachedResultName": "收據整合",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Xd6syTScjyHPbWe95ZOTuYCVSvujnbTTnO9rboYc_LI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "n8n automated",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Xd6syTScjyHPbWe95ZOTuYCVSvujnbTTnO9rboYc_LI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "收據日期": "={{ $json[\"收據日期\"] }}",
+            "收據店舖名稱": "={{ $json[\"收據店舖名稱\"] }}",
+            "收據時間": "={{ $json[\"收據時間\"] }}",
+            "收據號碼": "={{ $json[\"收據號碼\"] }}",
+            "消費總金額": "={{ $json[\"消費總金額\"] }}",
+            "消費詳情": "={{ $json[\"消費詳情\"] }}",
+            "收據雲端網址": "={{ $json[\"雲端網址\"] }}",
+            "備註 Remarks": "={{ $('On form submission').item.json.remarks }}"
+          },
+          "matchingColumns": [
+            "收據日期"
+          ],
+          "schema": [
+            {
+              "id": "收據日期",
+              "displayName": "收據日期",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "收據店舖名稱",
+              "displayName": "收據店舖名稱",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "收據時間",
+              "displayName": "收據時間",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "收據號碼",
+              "displayName": "收據號碼",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "消費總金額",
+              "displayName": "消費總金額",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "消費詳情",
+              "displayName": "消費詳情",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "備註 Remarks",
+              "displayName": "備註 Remarks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "收據雲端網址",
+              "displayName": "收據雲端網址",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        48,
+        288
+      ],
+      "id": "026985dd-feed-4d64-89c9-1023cbf8d981",
+      "name": "collecting data to google sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "dvvmmoihwjZUFuC6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// 將所有輸入 item 的多個 binary 欄位（receiptFile_0/1/...）拆成多筆輸出\nconst out = [];\n\nfor (const item of $input.all()) {\n  const bin = item.binary || {};\n  for (const [key, b] of Object.entries(bin)) {\n    if (!key.startsWith('receiptFile')) continue; // 只處理上傳欄位\n\n    out.push({\n      json: {\n        // 這些 json 欄位只是方便你在後續節點做表達式或除錯用\n        sourceField: key,\n        fileName: b.fileName || key,\n        mimeType: b.mimeType || 'application/octet-stream',\n        size: b.fileSize || null,\n      },\n      // 重要：把檔案放到固定欄位名 receiptFile，供 Google Drive 使用\n      binary: { receiptFile: b },\n    });\n  }\n}\n\nreturn out; // <--- 一定要回傳！\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -272,
+        -80
+      ],
+      "id": "865885ac-2ea2-4ac6-b987-28d18a96ef68",
+      "name": "多檔案隔離"
+    },
+    {
+      "parameters": {
+        "chatId": "8087733265",
+        "text": "=<b>店舖：</b> {{$json[\"收據店舖名稱\"]}}\n<b>日期：</b> {{$json[\"收據日期\"]}}\n<b>時間：</b> {{$json[\"收據時間\"] || '—'}}\n<b>號碼：</b> {{$json[\"收據號碼\"] || '—'}}\n<b>總額：</b> {{$json[\"消費總金額\"]}}\n<b>詳情：</b> {{\n  Array.isArray($json[\"消費詳情\"])\n     ? $json[\"消費詳情\"].join(\"、\")\n     : ($json[\"消費詳情\"] || '—')\n}}\n<b>備註：</b> {{$json[\"備註 Remarks\"]}}\n<b>收據原件網站：</b> <a href=\"{{ ($json['收據雲端網址'] || '').replace(/&/g,'&amp;') }}\">查看雲端收據</a>\n",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        256,
+        288
+      ],
+      "id": "5124dc2a-f7a6-49c0-9d3a-5a91f3978258",
+      "name": "Send a text message",
+      "webhookId": "8c0da47f-2677-4346-a73f-7e02509b5cf8",
+      "credentials": {
+        "telegramApi": {
+          "id": "AiPMyofLgd4AM3S0",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "YbLJwEnBwTBfhDAw",
+    "timeSavedPerExecution": 5,
+    "timezone": "Asia/Hong_Kong"
+  },
+  "shared": [
+    {
+      "createdAt": "2025-08-12T14:43:38.410Z",
+      "updatedAt": "2025-08-12T14:43:38.410Z",
+      "role": "workflow:owner",
+      "workflowId": "dQ9t0u60Ffdg2coR",
+      "projectId": "tAWfXc2Z8IFyOLzP"
+    }
+  ],
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-07T10:39:41.587Z",
+      "updatedAt": "2025-08-07T10:39:41.587Z",
+      "id": "9xDOAby2UTJzZ8AH",
+      "name": "backup"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-23T08:58:13.726Z",
+  "versionId": "7412d341-eb74-4adf-a786-8443e3238f21"
+}

@@ -239,8 +239,8 @@
       "type": "n8n-nodes-base.cron",
       "typeVersion": 1,
       "position": [
-        -2912,
-        -384
+        -2512,
+        -960
       ],
       "id": "d834e227-7f1f-41bb-a2fc-10e155a73774"
     },
@@ -258,8 +258,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -96,
-        -432
+        -1984,
+        -192
       ],
       "id": "15a35106-22b7-4deb-ac89-69615a1e7215",
       "credentials": {
@@ -287,8 +287,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -320,
-        -192
+        -2208,
+        48
       ],
       "id": "4b1a5756-cefa-4034-a6b6-e1f6c707d12c",
       "credentials": {
@@ -308,8 +308,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -1120,
-        -288
+        -2000,
+        -544
       ],
       "id": "71e74a42-1b82-490e-b7f1-9fbf8f8440cc"
     },
@@ -323,8 +323,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        128,
-        -432
+        -1760,
+        -192
       ],
       "id": "1337d89f-fc13-4bd1-b61f-ff7f72d3c49d"
     },
@@ -338,8 +338,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 2,
       "position": [
-        -96,
-        -192
+        -1984,
+        48
       ],
       "id": "6f4deec0-cd18-4b08-ae2e-fc31b9119780"
     },
@@ -354,8 +354,8 @@
       "type": "n8n-nodes-base.dateTime",
       "typeVersion": 2,
       "position": [
-        -2688,
-        -384
+        -2288,
+        -960
       ],
       "id": "3bcd86fc-f304-48f0-979b-27dfd7aeefae",
       "name": "Date & Time"
@@ -367,8 +367,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        576,
-        -288
+        -1136,
+        -16
       ],
       "id": "5e8805d0-5397-4fa2-b480-2a5cb38865c8",
       "name": "合併圖片檔案"
@@ -380,8 +380,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1344,
-        -288
+        -2224,
+        -544
       ],
       "id": "bcb1a0ac-b0fb-4b44-9954-94f1769a1f32",
       "name": "拿取notion資料"
@@ -403,8 +403,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        -896,
-        -288
+        -1776,
+        -544
       ],
       "id": "b8d6df51-bfab-4085-9493-9bedb66a06e4",
       "name": "描寫原圖片女性",
@@ -422,8 +422,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        352,
-        -304
+        -1536,
+        -64
       ],
       "id": "c0742fad-2e0e-42e1-8d1d-5668e95a856b",
       "name": "合併兩個圖片"
@@ -447,8 +447,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        128,
-        -128
+        -1760,
+        112
       ],
       "id": "c6ec5fcc-09aa-4c77-88dc-c7943a09a1bd",
       "name": "生成圖片寫成文案",
@@ -485,8 +485,8 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
       "position": [
-        1024,
-        -288
+        -688,
+        -16
       ],
       "id": "582b0156-d46a-4a37-9223-77d18f5642d1",
       "name": "Update a database page",
@@ -524,8 +524,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -2016,
-        -384
+        -1616,
+        -960
       ],
       "id": "ddb870e8-46d9-436b-8fe3-7353cf945a7c",
       "name": "If"
@@ -540,8 +540,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        -1792,
-        -480
+        -1392,
+        -1056
       ],
       "id": "b04b913b-0e07-49e8-9d54-45b3f8e3840f",
       "name": "通知補貨",
@@ -576,8 +576,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        800,
-        -288
+        -912,
+        -16
       ],
       "id": "aa6703ab-3e31-4d7a-9be4-dfb0ffbcd6e2",
       "name": "發送文案和圖片",
@@ -610,8 +610,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        -672,
-        -288
+        -2560,
+        -48
       ],
       "id": "bbaafd17-e41d-4adc-bab8-197c13835a68",
       "name": "生成圖片prompt",
@@ -649,8 +649,8 @@
       "type": "n8n-nodes-base.notion",
       "typeVersion": 2.2,
       "position": [
-        -2464,
-        -384
+        -2064,
+        -960
       ],
       "id": "f9d5b983-b675-410e-9d03-447c43679a4b",
       "name": "拿取notion所有資料",
@@ -713,8 +713,8 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -2240,
-        -384
+        -1840,
+        -960
       ],
       "id": "0374e6fc-cbba-4c74-9391-55d25df19ac7",
       "name": "Filter"
@@ -724,8 +724,8 @@
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
       "position": [
-        -1664,
-        -272
+        -2544,
+        -528
       ],
       "id": "310aff3e-2aeb-4217-9f55-50dd5cd59513",
       "name": "Limit"
@@ -762,6 +762,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-22T10:44:51.447Z",
-  "versionId": "e4f0d6d6-bb53-4693-a8cd-54887f5fc328"
+  "updatedAt": "2025-08-24T02:04:01.725Z",
+  "versionId": "91935571-26d9-4160-9b91-0c5fc8a59e05"
 }

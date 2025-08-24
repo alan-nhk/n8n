@@ -5,19 +5,24 @@
       "main": [
         [
           {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          },
+          {
             "node": "Send a message",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Send a text message",
+            "node": "yahoo email notification",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Send a message": {
+    "Send a text message": {
       "main": [
         []
       ]
@@ -37,10 +42,34 @@
       "typeVersion": 1,
       "position": [
         400,
-        112
+        80
       ],
       "id": "6874fac6-61fb-4562-9cb1-7dc1898f75d3",
       "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "chatId": "8087733265",
+        "text": "=<h3>n8n 工作流錯誤通知</h3>\n<p><b>工作流：</b> {{ $json.workflow.name }}（ID: {{ $json.workflow.id }}）</p>\n<p><b>節點：</b> {{ $json.execution?.lastNodeExecuted || $json.execution?.error?.node?.name || $json.trigger?.error?.node?.name || '未知節點' }}</p>\n<p><b>錯誤訊息：</b> {{ $json.execution?.error?.message || $json.trigger?.error?.message || '（無訊息）' }}</p>\n<p><b>執行 ID：</b> {{ $json.execution?.id || '—' }}</p>\n<p><b>執行連結：</b> <a href=\"{{ $json.execution?.url }}\">開啟 Execution</a></p>\n<p><b>模式：</b> {{ $json.execution?.mode || $json.trigger?.mode }}</p>\n",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        672,
+        224
+      ],
+      "id": "56a5cb3c-ab39-43b2-8682-d36eaec40ce0",
+      "name": "Send a text message",
+      "webhookId": "640ca9fe-99d6-47ad-922e-72d5fae3148a",
+      "credentials": {
+        "telegramApi": {
+          "id": "AiPMyofLgd4AM3S0",
+          "name": "Telegram account"
+        }
+      }
     },
     {
       "parameters": {
@@ -54,8 +83,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        704,
-        0
+        672,
+        -80
       ],
       "id": "65f86eb2-ff72-488c-be1a-7308f5ef2129",
       "name": "Send a message",
@@ -69,25 +98,25 @@
     },
     {
       "parameters": {
-        "chatId": "8087733265",
-        "text": "=<h3>n8n 工作流錯誤通知</h3>\n<p><b>工作流：</b> {{ $json.workflow.name }}（ID: {{ $json.workflow.id }}）</p>\n<p><b>節點：</b> {{ $json.execution?.lastNodeExecuted || $json.execution?.error?.node?.name || $json.trigger?.error?.node?.name || '未知節點' }}</p>\n<p><b>錯誤訊息：</b> {{ $json.execution?.error?.message || $json.trigger?.error?.message || '（無訊息）' }}</p>\n<p><b>執行 ID：</b> {{ $json.execution?.id || '—' }}</p>\n<p><b>執行連結：</b> <a href=\"{{ $json.execution?.url }}\">開啟 Execution</a></p>\n<p><b>模式：</b> {{ $json.execution?.mode || $json.trigger?.mode }}</p>\n",
-        "additionalFields": {
-          "parse_mode": "HTML"
-        }
+        "fromEmail": "alan_nhk@yahoo.com.hk",
+        "toEmail": "alan.nhk@gmail.com",
+        "subject": "=工作流 {{ $json.workflow.name }} 出錯誤",
+        "html": "=<h3>n8n 工作流錯誤通知</h3>\n<p><b>工作流：</b> {{ $json.workflow.name }}（ID: {{ $json.workflow.id }}）</p>\n<p><b>節點：</b> {{ $json.execution?.lastNodeExecuted || $json.execution?.error?.node?.name || $json.trigger?.error?.node?.name || '未知節點' }}</p>\n<p><b>錯誤訊息：</b> {{ $json.execution?.error?.message || $json.trigger?.error?.message || '（無訊息）' }}</p>\n<p><b>執行 ID：</b> {{ $json.execution?.id || '—' }}</p>\n<p><b>執行連結：</b> <a href=\"{{ $json.execution?.url }}\">開啟 Execution</a></p>\n<p><b>模式：</b> {{ $json.execution?.mode || $json.trigger?.mode }}</p>\n",
+        "options": {}
       },
-      "type": "n8n-nodes-base.telegram",
-      "typeVersion": 1.2,
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
       "position": [
-        704,
-        192
+        672,
+        80
       ],
-      "id": "56a5cb3c-ab39-43b2-8682-d36eaec40ce0",
-      "name": "Send a text message",
-      "webhookId": "640ca9fe-99d6-47ad-922e-72d5fae3148a",
+      "id": "e755dda5-27ea-4c3e-a8da-2af36f7885e2",
+      "name": "yahoo email notification",
+      "webhookId": "69c5e2f2-2999-488a-a2bf-171b5b22702a",
       "credentials": {
-        "telegramApi": {
-          "id": "AiPMyofLgd4AM3S0",
-          "name": "Telegram account"
+        "smtp": {
+          "id": "uZ9nLwdYrSQV6iT9",
+          "name": "yahoo email"
         }
       }
     }
@@ -120,6 +149,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-22T10:44:36.432Z",
-  "versionId": "ada0ec6d-6ddc-451d-a0f6-3b5b4696bf55"
+  "updatedAt": "2025-08-24T13:19:18.407Z",
+  "versionId": "308fba0f-5b11-45b7-8cf4-47ca824c2737"
 }

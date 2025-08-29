@@ -10,11 +10,6 @@
             "index": 0
           },
           {
-            "node": "Send a message",
-            "type": "main",
-            "index": 0
-          },
-          {
             "node": "yahoo email notification",
             "type": "main",
             "index": 0
@@ -73,31 +68,6 @@
     },
     {
       "parameters": {
-        "sendTo": "alan.nhk@gmail.com",
-        "subject": "=工作流 {{ $json.workflow.name }} 出錯誤",
-        "message": "=<h3>n8n 工作流錯誤通知</h3>\n<p><b>工作流：</b> {{ $json.workflow.name }}（ID: {{ $json.workflow.id }}）</p>\n<p><b>節點：</b> {{ $json.execution?.lastNodeExecuted || $json.execution?.error?.node?.name || $json.trigger?.error?.node?.name || '未知節點' }}</p>\n<p><b>錯誤訊息：</b> {{ $json.execution?.error?.message || $json.trigger?.error?.message || '（無訊息）' }}</p>\n<p><b>執行 ID：</b> {{ $json.execution?.id || '—' }}</p>\n<p><b>執行連結：</b> <a href=\"{{ $json.execution?.url }}\">開啟 Execution</a></p>\n<p><b>模式：</b> {{ $json.execution?.mode || $json.trigger?.mode }}</p>\n",
-        "options": {
-          "appendAttribution": false
-        }
-      },
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        672,
-        -80
-      ],
-      "id": "65f86eb2-ff72-488c-be1a-7308f5ef2129",
-      "name": "Send a message",
-      "webhookId": "2a27964f-3582-4804-872f-e8586c1e9588",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "gOIpIuvnrFdfA6lg",
-          "name": "draccident gmail"
-        }
-      }
-    },
-    {
-      "parameters": {
         "fromEmail": "alan_nhk@yahoo.com.hk",
         "toEmail": "alan.nhk@gmail.com",
         "subject": "=工作流 {{ $json.workflow.name }} 出錯誤",
@@ -107,8 +77,8 @@
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        672,
-        80
+        656,
+        0
       ],
       "id": "e755dda5-27ea-4c3e-a8da-2af36f7885e2",
       "name": "yahoo email notification",
@@ -149,6 +119,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2025-08-24T13:19:18.407Z",
-  "versionId": "308fba0f-5b11-45b7-8cf4-47ca824c2737"
+  "updatedAt": "2025-08-28T23:05:58.849Z",
+  "versionId": "dcbc2fa5-2c38-467e-8403-b48b9c2afe3c"
 }

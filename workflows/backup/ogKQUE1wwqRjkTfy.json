@@ -262,6 +262,7 @@
         -192
       ],
       "id": "15a35106-22b7-4deb-ac89-69615a1e7215",
+      "alwaysOutputData": true,
       "credentials": {
         "fluxApi": {
           "id": null,
@@ -291,6 +292,7 @@
         48
       ],
       "id": "4b1a5756-cefa-4034-a6b6-e1f6c707d12c",
+      "alwaysOutputData": true,
       "credentials": {
         "httpBearerAuth": {
           "id": "NGJ6hTyVzDAD5T8s",
@@ -326,7 +328,8 @@
         -1760,
         -192
       ],
-      "id": "1337d89f-fc13-4bd1-b61f-ff7f72d3c49d"
+      "id": "1337d89f-fc13-4bd1-b61f-ff7f72d3c49d",
+      "alwaysOutputData": true
     },
     {
       "parameters": {
@@ -341,7 +344,8 @@
         -1984,
         48
       ],
-      "id": "6f4deec0-cd18-4b08-ae2e-fc31b9119780"
+      "id": "6f4deec0-cd18-4b08-ae2e-fc31b9119780",
+      "alwaysOutputData": true
     },
     {
       "parameters": {
@@ -762,6 +766,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-08-24T02:04:01.725Z",
-  "versionId": "91935571-26d9-4160-9b91-0c5fc8a59e05"
+  "updatedAt": "2025-08-29T22:56:47.534Z",
+  "versionId": "4ee4d7f3-fc27-4935-8dce-a23c48a4982b"
 }
